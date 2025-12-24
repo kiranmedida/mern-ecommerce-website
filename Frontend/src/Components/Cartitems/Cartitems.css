@@ -1,0 +1,211 @@
+:root{
+  --page-max: 1180px;
+  --muted: #8b8b8b;
+  --line: #e6e6e6;
+  --accent: #e14b3b;
+  --bg: #fff;
+  --radius: 6px;
+  --gap: 18px;
+}
+
+/* Page container */
+.cartitems{
+  max-width: var(--page-max);
+  margin: 36px auto;
+  padding: 20px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #222;
+  box-sizing: border-box;
+}
+
+/* Header row (labels) */
+.cartitems-format-main{
+  display: grid;
+  grid-template-columns: 110px 1fr 120px 120px 120px 60px; /* wider first column for bigger thumbnails */
+  gap: 12px;
+  align-items: center;
+  padding: 6px 10px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Thin separator line */
+.cartitems hr{
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 12px 0;
+}
+
+/* Each product row */
+.cartitems-format{
+  display: grid;
+  grid-template-columns: 110px 1fr 120px 120px 120px 60px; /* match header */
+  gap: 12px;
+  align-items: center;
+  padding: 18px 10px;
+  min-height: 96px; /* taller rows */
+}
+
+/* Product thumbnail (LARGER) */
+.cartitems-format img.carticon-product-icon {
+  width: 88px; /* larger */
+  height: 88px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  display: inline-block;
+}
+
+/* product title text */
+.cartitems-format p{
+  margin: 0;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+/* Price cell */
+.cartitems-format > p:nth-child(3){
+  color: #333;
+  font-weight: 600;
+}
+
+/* Quantity button / box */
+.cartitems-quantity{
+  width: 56px;
+  height: 36px;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: default;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Total column styling */
+.cartitems-format > p:nth-child(5){
+  font-weight: 700;
+  text-align: left;
+}
+
+/* Remove icon */
+.cartitems-format img.remove-icon{
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  justify-self: center;
+}
+
+/* LOWER AREA: totals + promo area and checkout button aligned under totals */
+.cartitems-bottom-row{
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+/* Totals card (left) */
+.cartitems-total{
+  flex: 1 1 520px; /* grow */
+  background: var(--bg);
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(34,34,34,0.03);
+  min-width: 320px;
+  box-sizing: border-box;
+}
+/* Ensure proceed button sits under totals — put it inside this container or styled to appear below */
+.cartitems-total .checkout-btn{
+  margin-top: 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor:pointer;
+  box-shadow: 0 8px 24px rgba(225,75,59,0.12);
+  width: 220px;
+}
+
+/* Totals lines */
+.cartitems-total h1{
+  font-size: 20px;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+.cartitems-total-item{
+  display:flex;
+  justify-content:space-between;
+  padding: 12px 4px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.cartitems-total-item h3{ margin:0; }
+.cartitems-total-item p{ margin:0; }
+
+/* Promo box (right) */
+.cartitems-promocode{
+  flex: 0 0 420px; /* fixed-right column width */
+  max-width: 420px;
+  margin-left: auto;
+}
+.cartitems-promocode p{
+  margin: 0 0 10px 0;
+  color: var(--muted);
+}
+.cartitems-promobox{
+  display:flex;
+  gap: 8px;
+  align-items:center;
+}
+.cartitems-promobox input{
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fafafa;
+}
+.cartitems-promobox button{
+  padding: 12px 18px;
+  border-radius: 4px;
+  border: none;
+  background: #222;
+  color: white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 980px){
+  .cartitems-format-main,
+  .cartitems-format{
+    grid-template-columns: 80px 1fr 96px 96px 96px 56px;
+    font-size: 13px;
+  }
+  .cartitems{
+    padding: 12px;
+    margin: 14px auto;
+  }
+  .cartitems-bottom-row{
+    flex-direction: column;
+    gap: 18px;
+  }
+  .cartitems-promocode{
+    order: 2;
+    width: 100%;
+    margin-left: 0;
+    max-width: none;
+  }
+  .cartitems-total{
+    width: 100%;
+  }
+  .cartitems-total .checkout-btn{
+    width: 100%;
+  }
+}

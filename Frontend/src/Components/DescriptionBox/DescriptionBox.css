@@ -1,0 +1,116 @@
+:root{
+  --max-width: 1180px;
+  --page-bg: #f7f7f8;
+  --muted: #7e7e7e;
+  --line: #e6e6e6;
+  --text: #222;
+  --tab-bg: #fff;
+  --tab-active-border: #dcdcdc;
+  --radius: 6px;
+  --gap: 18px;
+}
+
+*{box-sizing: border-box}
+body{background:var(--page-bg); font-family: "Helvetica Neue", Arial, sans-serif; color:var(--text);}
+
+/* Outer container — center & match page width */
+.descriptionbox{
+  max-width: var(--max-width);
+  margin: 36px auto;
+  padding: 0 20px;
+}
+
+/* Navigator (tabs) */
+.descriptionbox-navigator{
+  display: flex;
+  gap: 0;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+/* Each tab box */
+.descriptionbox-nav-box{
+  padding: 14px 22px;
+  background: var(--tab-bg);
+  border: 1px solid var(--line);
+  border-bottom: none;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+  transition: background .12s ease, transform .08s ease;
+}
+
+/* first tab left rounded */
+.descriptionbox-nav-box:first-child{
+  border-top-left-radius: var(--radius);
+}
+
+/* last tab right rounded */
+.descriptionbox-nav-box:last-child{
+  border-top-right-radius: var(--radius);
+  margin-left: 12px;
+}
+
+/* hover */
+.descriptionbox-nav-box:hover{
+  transform: translateY(-2px);
+}
+
+/* active / selected tab (add .active in React) */
+.descriptionbox-nav-box.active{
+  color: var(--text);
+  background: #fff;
+  border-color: var(--tab-active-border);
+  box-shadow: 0 6px 20px rgba(34,34,34,0.04);
+}
+
+/* faded / less prominent tab (you used class "fade") */
+.descriptionbox-nav-box.fade{
+  color: var(--muted);
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+/* content panel that sits below the tabs */
+.descriptionbox-description{
+  border: 1px solid var(--line);
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: #fff;
+  padding: 26px 28px;
+  margin-top: -1px; /* covers border overlap with tabs */
+  min-height: 120px;
+  box-shadow: 0 6px 18px rgba(30,30,30,0.03);
+}
+
+/* paragraph styling */
+.descriptionbox-description p{
+  margin: 0;
+  color: #555;
+  font-size: 14.5px;
+  line-height: 1.8;
+  letter-spacing: 0.1px;
+}
+
+/* smaller screens adjustments */
+@media (max-width: 820px){
+  .descriptionbox{
+    padding: 18px;
+    margin: 22px auto;
+  }
+  .descriptionbox-navigator{
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .descriptionbox-nav-box{
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  .descriptionbox-description{
+    padding: 18px;
+    min-height: 100px;
+  }
+  .descriptionbox-description p{
+    font-size: 14px;
+  }
+}

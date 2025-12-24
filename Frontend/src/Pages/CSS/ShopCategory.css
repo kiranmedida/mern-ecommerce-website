@@ -1,0 +1,203 @@
+/* ShopCategory.css - tailored to your JSX structure and screenshots */
+
+/* ---------- Page container ---------- */
+.shop-category {
+  width: 100%;
+  padding: 28px 36px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #222;
+  background: #fff;
+}
+
+/* ---------- Banner image (your <img className="shopcategory-banner" /> ) ---------- */
+.shopcategory-banner {
+  width: 100%;
+  height: 280px;               /* screenshot-like height */
+  object-fit: cover;           /* crop to fill */
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+/* If you prefer the banner image aligned to the right like screenshot,
+   the markup would need a wrapper — but this gives a consistent hero look
+   while keeping your exact <img /> usage. */
+
+/* ---------- index + sort row ---------- */
+.shopcategory-indexSort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  color: #666;
+  font-size: 14px;
+}
+
+/* small left text ("Showing 1-12 out of ...") */
+.shopcategory-indexSort p {
+  margin: 0;
+  line-height: 1.2;
+  color: #666;
+}
+
+/* rounded "Sort by" control as in screenshot */
+.shopcategory-sort {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid #ebebeb;
+  padding: 8px 12px;
+  border-radius: 22px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.shopcategory-sort img { width: 16px; height: 16px; object-fit: contain; }
+
+/* ---------- Products grid ---------- */
+.shopcategory-products {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns like screenshot */
+  gap: 22px;
+  align-items: start;
+  padding-bottom: 56px;
+  box-sizing: border-box;
+}
+
+/* Fallback empty message styling */
+.shopcategory-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 8px;
+  color: #777;
+  font-size: 15px;
+}
+
+/* Explore More CTA row at bottom */
+.shopcategory-loadmore {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin: 24px 0 40px;
+  background: rgba(0,0,0,0.04);
+  padding: 12px 28px;
+  border-radius: 28px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.shopcategory-loadmore:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* ---------- Product card expectations ---------- */
+/* Your Item component may use .item-card or .item or .product-card - handle common cases */
+
+/* container */
+.shopcategory-products .item-card,
+.shopcategory-products .item,
+.shopcategory-products .product-card {
+  background: transparent;
+  border-radius: 6px;
+  padding: 6px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+/* product image */
+.shopcategory-products .item-card img,
+.shopcategory-products .item img,
+.shopcategory-products .product-card img {
+  width: 100%;
+  height: 240px;       /* tall product images like screenshot */
+  object-fit: cover;
+  border-radius: 6px;
+  display:block;
+}
+
+/* product title / name */
+.shopcategory-products .item-card .title,
+.shopcategory-products .item .title,
+.shopcategory-products .product-card .title {
+  font-size: 13px;
+  color: #444;
+  margin: 10px 0 6px;
+  line-height: 1.3;
+}
+
+/* price row */
+.shopcategory-products .item-card .price,
+.shopcategory-products .item .price,
+.shopcategory-products .product-card .price {
+  font-size: 14px;
+  color: #111;
+  font-weight: 700;
+}
+
+/* old price (strike-through) */
+.shopcategory-products .item-card .old-price,
+.shopcategory-products .item .old-price,
+.shopcategory-products .product-card .old-price {
+  font-size: 12px;
+  text-decoration: line-through;
+  color: #a5a5a5;
+  margin-left: 8px;
+  font-weight: 500;
+}
+
+/* If your Item uses other nested structure, the above will still work
+   for the most common class names. If not, send your Item.jsx and I'll adapt. */
+
+/* ---------- Footer-ish spacing to match screenshot ---------- */
+.shop-footer {
+  width: 100%;
+  text-align: center;
+  padding: 48px 16px;
+  border-top: 1px solid #f3f3f3;
+  margin-top: 40px;
+  color: #666;
+}
+.shop-footer .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* ---------- Accessibility helpers (focus states) ---------- */
+.shopcategory-sort:focus,
+.shopcategory-loadmore:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(227,111,34,0.12);
+  border-color: rgba(227,111,34,0.35);
+}
+
+/* ---------- Responsive rules ---------- */
+@media (max-width: 1100px) {
+  .shopcategory-products { grid-template-columns: repeat(3, 1fr); }
+  .shopcategory-banner { height: 240px; }
+}
+@media (max-width: 760px) {
+  .shopcategory-products { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .shop-category { padding: 20px; }
+  .shopcategory-banner { height: 200px; border-radius: 6px; }
+}
+@media (max-width: 420px) {
+  .shopcategory-products { grid-template-columns: 1fr; }
+  .shopcategory-banner { height: 160px; }
+}
+
+/* ---------- Optional niceties ---------- */
+/* Make product images lazy (if you control Item output, add loading="lazy" to <img>) */
+/* Add small hover lift for each card if you like */
+.shopcategory-products .item-card:hover,
+.shopcategory-products .item:hover,
+.shopcategory-products .product-card:hover {
+  transform: translateY(-4px);
+  transition: transform .12s ease, box-shadow .12s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+}

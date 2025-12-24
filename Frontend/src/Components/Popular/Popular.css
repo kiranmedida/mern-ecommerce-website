@@ -1,0 +1,36 @@
+/* ONE COLUMN LIST */
+.popular-item {
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  gap: 30px;              /* space between items */
+cursor: pointer;
+  margin-top:50px ;
+ display: flex;
+  justify-content: center;   /* center the whole row */
+  align-items: center;
+  gap: 40px;                 /* space between each image */
+  flex-wrap: wrap;           /* helps on small screens */
+}
+
+.Popular h1{
+    color: black;
+    font-size: 50px;
+    font-weight:600;
+}
+.Popular hr{
+    width:130px;
+    height: 6px;
+    border-radius: 10px;
+    background: red;
+    flex-direction: center;
+  align-items: center;
+  text-align: center;
+  margin: 10px auto;
+}
+.item img:hover {
+  transform: scale(1.07); /* zoom-in effect */
+}
+.Popular{
+    text-align: center;
+}
