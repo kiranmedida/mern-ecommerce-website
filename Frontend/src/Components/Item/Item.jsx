@@ -1,20 +1,13 @@
-import React from "react";
-import "./Item.css";
 import { Link } from "react-router-dom";
 
+const BACKEND_URL = "https://mern-ecommerce-website-v9ns.onrender.com";
+
 const Item = (props) => {
-  // ✅ UNIVERSAL IMAGE URL HANDLER
   let imageSrc = props.image;
 
-  if (
-    imageSrc &&
-    !imageSrc.startsWith("http://") &&
-    !imageSrc.startsWith("https://")
-  ) {
-    // backend serves images from port 4000
-    imageSrc = `http://localhost:4000${
-      imageSrc.startsWith("/") ? "" : "/"
-    }${imageSrc}`;
+  // If image is relative path, attach backend URL
+  if (imageSrc && !imageSrc.startsWith("http")) {
+    imageSrc = `${BACKEND_URL}${imageSrc}`;
   }
 
   return (
@@ -27,7 +20,6 @@ const Item = (props) => {
             width: "100%",
             height: "280px",
             objectFit: "cover",
-            display: "block",
           }}
         />
       </Link>

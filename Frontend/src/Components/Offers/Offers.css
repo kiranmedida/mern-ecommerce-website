@@ -1,48 +1,125 @@
+/* ===============================
+   OFFERS – EDITORIAL CAMPAIGN
+   (CSS only, logic untouched)
+================================ */
+
 .offers-container {
-  width: 55%;
-  margin: 60px auto;
+  width: 75%;
+  margin: 120px auto;
+  padding: 70px 80px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 40px 60px;
+  gap: 60px;
 
-  /* Soft rectangular gradient like your screenshot */
-  background: linear-gradient(90deg, #f8dff5 0%, #f1e9ff 100%);
-  border-radius: 12px;
+  background:
+    radial-gradient(500px 300px at 20% 30%, rgba(34,211,238,0.15), transparent 40%),
+    radial-gradient(500px 300px at 80% 70%, rgba(99,102,241,0.15), transparent 40%),
+    #020617;
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 40px 90px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
+/* ===============================
+   LEFT CONTENT
+================================ */
 .offers {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  max-width: 480px;
 }
 
+/* headline */
 .offers h1 {
-  font-size: 50px;
-  line-height: 1.1;
-  font-weight: 700;
+  font-size: 56px;
+  line-height: 1.05;
+  font-weight: 900;
   margin: 0;
+  letter-spacing: -1px;
+  color: #f8fafc;
 }
 
+/* subtext */
 .offers p {
-  font-size: 18px;
-  font-weight: 600;
-  color: #777;
+  font-size: 15px;
+  font-weight: 500;
+  color: #94a3b8;
 }
 
+/* CTA */
 .offers button {
-  margin-top: 18px;
-  padding: 10px 22px;
-  background-color: #ef5843;
-  color: white;
+  margin-top: 26px;
+  padding: 14px 36px;
+  background: #22d3ee;
+  color: #020617;
   border: none;
-  border-radius: 25px;
+  border-radius: 999px;
   font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  width: 70%;
+  width: max-content;
+
+  box-shadow: 0 20px 45px rgba(34,211,238,0.45);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.offers button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 65px rgba(34,211,238,0.65);
+}
+
+/* ===============================
+   RIGHT IMAGE
+================================ */
 .offers-right img {
-  height: 330px;
+  height: 340px;
   object-fit: contain;
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.65));
+  pointer-events: none;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 1100px) {
+  .offers-container {
+    width: 90%;
+    padding: 60px 50px;
+  }
+
+  .offers h1 {
+    font-size: 44px;
+  }
+
+  .offers-right img {
+    height: 300px;
+  }
+}
+
+@media (max-width: 800px) {
+  .offers-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    padding: 60px 30px;
+  }
+
+  .offers {
+    align-items: center;
+  }
+
+  .offers button {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .offers-right img {
+    height: 260px;
+  }
 }

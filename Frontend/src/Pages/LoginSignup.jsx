@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import './CSS/LoginSignup.css';
+import React, { useState } from "react";
+import "./CSS/LoginSignup.css";
+
+// ✅ Render backend URL
+const BACKEND_URL = "https://mern-ecommerce-website-v9ns.onrender.com";
 
 const LoginSignup = () => {
-  // form type: "Login" or "Sign Up"
   const [state, setState] = useState("Login");
 
-  // form fields
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -19,12 +20,10 @@ const LoginSignup = () => {
     });
   };
 
+  // 🔐 LOGIN
   const login = async () => {
-    console.log("Login Function Executed", formData);
-    let responseData;
-
     try {
-      const response = await fetch("http://localhost:4000/login", {
+      const response = await fetch(`${BACKEND_URL}/login`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -33,28 +32,24 @@ const LoginSignup = () => {
         body: JSON.stringify(formData),
       });
 
-      responseData = await response.json();
-      console.log("Signup Response:", responseData);
+      const responseData = await response.json();
 
       if (responseData.success) {
         localStorage.setItem("auth-token", responseData.token);
         window.location.replace("/");
       } else {
-        alert(responseData.errors || "login failed");
+        alert(responseData.errors || "Login failed");
       }
     } catch (err) {
-      console.error("Signup error:", err);
+      console.error("Login error:", err);
       alert("Something went wrong. Please try again.");
     }
   };
 
+  // 📝 SIGNUP
   const signup = async () => {
-    console.log("Signup Function Executed", formData);
-
-    let responseData;
-
     try {
-      const response = await fetch("http://localhost:4000/signup", {
+      const response = await fetch(`${BACKEND_URL}/signup`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -63,8 +58,7 @@ const LoginSignup = () => {
         body: JSON.stringify(formData),
       });
 
-      responseData = await response.json();
-      console.log("Signup Response:", responseData);
+      const responseData = await response.json();
 
       if (responseData.success) {
         localStorage.setItem("auth-token", responseData.token);
@@ -79,11 +73,7 @@ const LoginSignup = () => {
   };
 
   const handleSubmit = () => {
-    if (state === "Login") {
-      login();
-    } else {
-      signup();
-    }
+    state === "Login" ? login() : signup();
   };
 
   return (
@@ -136,7 +126,7 @@ const LoginSignup = () => {
         <div className="loginsignup-agree">
           <input type="checkbox" />
           <p>
-            By Continuing , I Agree To The Terms Of Use & Privacy Policy.
+            By continuing, I agree to the Terms of Use & Privacy Policy.
           </p>
         </div>
       </div>

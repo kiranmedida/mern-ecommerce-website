@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-// 🔹 adjust the path below if needed
+// 🔹 adjust path if needed
 import all_product from "../Components/Assets/all_product";
+
+// ✅ Render backend URL
+const BACKEND_URL = "https://mern-ecommerce-website-v9ns.onrender.com";
 
 const Seed = () => {
   const [status, setStatus] = useState("");
@@ -20,8 +23,7 @@ const Seed = () => {
           old_price: p.old_price,
         };
 
-        // call your existing /addproduct route
-        const resp = await fetch("http://localhost:4000/addproduct", {
+        const resp = await fetch(`${BACKEND_URL}/addproduct`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -34,23 +36,25 @@ const Seed = () => {
 
         if (data.success) {
           setDoneCount((prev) => prev + 1);
-          console.log("Seeded:", product);
+          console.log("✅ Seeded:", product.name);
         } else {
-          console.log("Failed to add:", product.name);
+          console.log("❌ Failed:", product.name);
         }
       }
 
-      setStatus("✅ All products seeded!");
+      setStatus("✅ All products seeded successfully!");
     } catch (err) {
       console.error("Seed error:", err);
-      setStatus("❌ Error while seeding");
+      setStatus("❌ Error while seeding products");
     }
   };
 
   return (
     <div style={{ padding: "20px" }}>
       <h2>Seed Products</h2>
-      <p>This will send all products from all_product to the backend.</p>
+      <p>
+        This will insert all products from <code>all_product</code> into MongoDB.
+      </p>
 
       <button
         onClick={seedProducts}
@@ -70,11 +74,11 @@ const Seed = () => {
 
       <hr />
 
-      <h3>Preview from all_product:</h3>
+      <h3>Preview (local data):</h3>
       <ul>
         {all_product.map((item) => (
           <li key={item.id}>
-            {item.id}. {item.name} ({item.category}) – {item.new_price} /{" "}
+            {item.id}. {item.name} ({item.category}) – ₹{item.new_price} / ₹
             {item.old_price}
           </li>
         ))}

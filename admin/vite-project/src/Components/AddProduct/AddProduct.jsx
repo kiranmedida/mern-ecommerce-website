@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./AddProduct.css";
 import upload_area from "../../assets/upload_area.svg";
 
+// 🔗 Render backend URL
+const BACKEND_URL = "https://mern-ecommerce-website-v9ns.onrender.com";
+
 const AddProduct = () => {
-  const [image, setImage] = useState(false);
+  const [image, setImage] = useState(null);
 
   const [productDetails, setProductDetails] = useState({
     name: "",
@@ -13,6 +16,7 @@ const AddProduct = () => {
     old_price: "",
   });
 
+  // Handle input change
   const changeHandler = (e) => {
     setProductDetails({
       ...productDetails,
@@ -20,11 +24,18 @@ const AddProduct = () => {
     });
   };
 
+  // Handle image selection
   const imageHandler = (e) => {
     setImage(e.target.files[0]);
   };
 
+  // Add product function
   const Add_Product = async () => {
+    if (!image) {
+      alert("Please select an image");
+      return;
+    }
+
     let product = { ...productDetails };
     let responseData;
 
@@ -32,43 +43,47 @@ const AddProduct = () => {
     let formData = new FormData();
     formData.append("product", image);
 
-    await fetch("http://localhost:4000/upload", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-      },
-      body: formData,
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        responseData = data;
-      });
-
-    // 2️⃣ If upload ok → save product
-    if (responseData.success) {
-      product.image = responseData.image_url;
-      console.log(product); // single product like tutor
-
-      await fetch("http://localhost:4000/addproduct", {
+    try {
+      const uploadResponse = await fetch(`${BACKEND_URL}/upload`, {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json",
         },
-        body: JSON.stringify(product),
-      })
-        .then((resp) => resp.json())
-        .then(async (data) => {
-          
-          // ⭐ EXTRA PART: get all products and log them (like tutor)
-          await fetch("http://localhost:4000/allproducts")
-            .then((resp) => resp.json())
-            .then((all) => {
-              console.log(all); // this shows array of many products
-            });
+        body: formData,
+      });
+
+      responseData = await uploadResponse.json();
+
+      // 2️⃣ If upload success → save product
+      if (responseData.success) {
+        product.image = responseData.image_url;
+
+        await fetch(`${BACKEND_URL}/addproduct`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(product),
         });
-    } else {
-      alert("Image Upload Failed");
+
+        alert("Product Added Successfully ✅");
+
+        // Reset form
+        setProductDetails({
+          name: "",
+          image: "",
+          category: "women",
+          new_price: "",
+          old_price: "",
+        });
+        setImage(null);
+      } else {
+        alert("Image upload failed ❌");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong ❌");
     }
   };
 
@@ -78,35 +93,35 @@ const AddProduct = () => {
       <div className="addproduct-itemfield">
         <p>Product Title</p>
         <input
-          value={productDetails.name}
-          onChange={changeHandler}
           type="text"
           name="name"
           placeholder="Type here"
+          value={productDetails.name}
+          onChange={changeHandler}
         />
       </div>
 
       {/* Price Section */}
       <div className="addproduct-price">
         <div className="addproduct-itemfield">
-          <p>Price</p>
+          <p>Old Price</p>
           <input
-            value={productDetails.old_price}
-            onChange={changeHandler}
             type="text"
             name="old_price"
             placeholder="Type here"
+            value={productDetails.old_price}
+            onChange={changeHandler}
           />
         </div>
 
         <div className="addproduct-itemfield">
-          <p>Offer Price</p>
+          <p>New Price</p>
           <input
-            value={productDetails.new_price}
-            onChange={changeHandler}
             type="text"
             name="new_price"
             placeholder="Type here"
+            value={productDetails.new_price}
+            onChange={changeHandler}
           />
         </div>
       </div>
@@ -115,9 +130,9 @@ const AddProduct = () => {
       <div className="addproduct-itemfield">
         <p>Product Category</p>
         <select
+          name="category"
           value={productDetails.category}
           onChange={changeHandler}
-          name="category"
           className="add-product-selector"
         >
           <option value="women">Women</option>
@@ -149,7 +164,7 @@ const AddProduct = () => {
 
       {/* Add Button */}
       <button onClick={Add_Product} className="addproduct-btn">
-        ADD
+        ADD PRODUCT
       </button>
     </div>
   );

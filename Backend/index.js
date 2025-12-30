@@ -16,7 +16,8 @@ app.use(cors());
 
 /* ----------------- MongoDB Connection ----------------- */
 const user = "kiranmedida";
-const pass = encodeURIComponent("virat@9009");
+const pass = "virat9009";
+
 const host = "cluster0.7egsdiz.mongodb.net";
 const db = "e-commerce";
 
@@ -63,9 +64,10 @@ app.post("/upload", upload.single("product"), (req, res) => {
   }
 
   res.json({
-    success: true,
-    image_url: `http://localhost:${port}/images/${req.file.filename}`,
-  });
+  success: true,
+  image_url: `/images/${req.file.filename}`,
+});
+
 });
 
 /* ----------------- Product Model ----------------- */

@@ -1,86 +1,128 @@
+/* ===============================
+   NEWSLETTER – EDITORIAL INVITE
+   (Logic untouched)
+================================ */
+
 .newsletter {
   width: 90%;
   max-width: 1200px;
-  margin: 60px auto;
-  padding: 50px 60px;
-  border-radius: 12px;
+  margin: 120px auto;
+  padding: 80px 70px;
+  border-radius: 28px;
 
-  /* Soft gradient like your screenshot */
-  background: linear-gradient(
-    135deg,
-    rgba(244, 235, 255, 0.7),
-    rgba(255, 240, 245, 0.7),
-    rgba(255, 255, 255, 0.7)
-  );
+  background:
+    radial-gradient(600px 300px at 20% 20%, rgba(34,211,238,0.15), transparent 40%),
+    radial-gradient(600px 300px at 80% 80%, rgba(99,102,241,0.15), transparent 40%),
+    linear-gradient(180deg, #020617, #020617);
 
+  color: #e5e7eb;
   text-align: center;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.55),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
 }
 
-/* Heading */
+/* ===============================
+   HEADING
+================================ */
 .newsletter h1 {
-  font-size: 40px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 8px;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  color: #f8fafc;
 }
 
-/* Sub text */
+/* ===============================
+   SUBTEXT
+================================ */
 .newsletter p {
   font-size: 15px;
-  color: #666;
-  margin-bottom: 25px;
+  color: #94a3b8;
+  margin-bottom: 36px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Input + Button wrapper */
+/* ===============================
+   INPUT + BUTTON WRAP
+================================ */
 .newsletter > div {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 16px;
   width: 100%;
-  max-width: 800px;
+  max-width: 720px;
   margin: auto;
 }
 
-/* Email input */
+/* ===============================
+   EMAIL INPUT
+================================ */
 .newsletter input {
   flex: 1;
-  height: 50px;
-  padding: 0 16px;
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  font-size: 15px;
+  height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  font-size: 14px;
+  background: rgba(255,255,255,0.04);
+  color: #e5e7eb;
   outline: none;
-  background: white;
-  transition: 0.2s ease;
+
+  transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.newsletter input::placeholder {
+  color: #64748b;
 }
 
 .newsletter input:focus {
-  border-color: #888;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 4px rgba(34,211,238,0.25);
 }
 
-/* Subscribe Button */
+/* ===============================
+   SUBSCRIBE BUTTON
+================================ */
 .newsletter button {
-  padding: 0 26px;
-  height: 50px;
-  border-radius: 30px;
-  background: black;
-  color: white;
+  height: 52px;
+  padding: 0 34px;
+  border-radius: 999px;
+  background: #22d3ee;
+  color: #020617;
   border: none;
-  font-size: 15px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.2s ease;
+
+  box-shadow:
+    0 18px 40px rgba(34,211,238,0.45);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .newsletter button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+  transform: translateY(-3px);
+  box-shadow:
+    0 28px 60px rgba(34,211,238,0.65);
 }
 
-/* Mobile */
-@media (max-width: 600px) {
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 700px) {
+  .newsletter {
+    padding: 60px 30px;
+    margin: 90px auto;
+  }
+
+  .newsletter h1 {
+    font-size: 32px;
+  }
+
   .newsletter > div {
     flex-direction: column;
   }
