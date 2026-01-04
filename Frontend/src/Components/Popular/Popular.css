@@ -1,36 +1,45 @@
-/* ONE COLUMN LIST */
 .popular-item {
-  display: flex;
-  flex-direction: center;
-  align-items: center;
-  gap: 30px;              /* space between items */
-cursor: pointer;
-  margin-top:50px ;
- display: flex;
-  justify-content: center;   /* center the whole row */
-  align-items: center;
-  gap: 40px;                 /* space between each image */
-  flex-wrap: wrap;           /* helps on small screens */
+  display: grid;
+  gap: 20px;
+  margin-top: 40px;
+  padding: 0 20px;
 }
 
-.Popular h1{
-    color: black;
-    font-size: 50px;
-    font-weight:600;
+/* Mobile → 2 columns */
+@media (max-width: 768px) {
+  .popular-item {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
-.Popular hr{
-    width:130px;
-    height: 6px;
-    border-radius: 10px;
-    background: red;
-    flex-direction: center;
-  align-items: center;
+
+/* Tablet → 3 columns */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .popular-item {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Desktop → 4 columns */
+@media (min-width: 1025px) {
+  .popular-item {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* TITLE */
+.Popular {
   text-align: center;
+}
+
+.Popular h1 {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.Popular hr {
+  width: 120px;
+  height: 5px;
+  background: red;
+  border-radius: 10px;
   margin: 10px auto;
-}
-.item img:hover {
-  transform: scale(1.07); /* zoom-in effect */
-}
-.Popular{
-    text-align: center;
 }

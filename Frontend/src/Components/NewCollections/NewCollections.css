@@ -33,71 +33,24 @@
 ================================ */
 .collections {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 30px;
-  row-gap: 40px;
-  width: 80%;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
+
 
 /* ===============================
    ITEM CARD
 ================================ */
-.item {
-  width: 100%;
-  max-width: 230px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
+
 
 /* ===============================
    PRODUCT IMAGE (FIXED)
 ================================ */
-.item img {
-  width: 100%;
-  height: 280px;        /* 🔴 REQUIRED */
-  object-fit: cover;   /* 🔴 REQUIRED */
-  border-radius: 10px;
-  display: block;
-  transition: 0.3s ease;
-}
-
-.item img:hover {
-  transform: scale(1.07);
-}
-
-/* ===============================
-   PRODUCT NAME
-================================ */
-.item p {
-  font-size: 16px;
-  font-weight: 500;
-  margin: 12px 0 8px;
-  color: #333;
-}
-
-/* ===============================
-   PRICES
-================================ */
-.item-prices {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
-}
-
-.item-price-new {
-  font-size: 16px;
-  font-weight: 600;
-  color: #000;
-}
-
-.item-price-old {
-  font-size: 14px;
-  color: #888;
-  text-decoration: line-through;
-}
 
 /* ===============================
    RESPONSIVE
@@ -121,12 +74,21 @@
     grid-template-columns: 1fr;
   }
 }
-/* FORCE IMAGE VISIBILITY – FINAL FIX */
+/* ===============================
+   PRODUCT IMAGE – FACE SAFE
+================================ */
 .new-collections .item img {
-  width: 100% !important;
-  height: 280px !important;
-  object-fit: cover !important;
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
+  width: 100%;
+  height: 260px;            /* consistent card height */
+  object-fit: contain;     /* ✅ NO FACE CUTTING */
+  background: #f4f4f4;     /* clean Amazon-like bg */
+  border-radius: 10px;
+  display: block;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .new-collections .item img {
+    height: 180px;
+  }
 }

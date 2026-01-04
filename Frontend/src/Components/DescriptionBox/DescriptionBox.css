@@ -114,3 +114,9 @@ body{background:var(--page-bg); font-family: "Helvetica Neue", Arial, sans-serif
     font-size: 14px;
   }
 }
+@media (max-width: 600px) {
+  .descriptionbox-nav-box {
+    flex: 1;
+    text-align: center;
+  }
+}

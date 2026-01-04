@@ -77,4 +77,21 @@
   font-size: 16px;
   color: #555;
   margin: 0;
+}@media (max-width: 768px) {
+  .footer {
+    padding: 30px 16px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .footer-logo p {
+    font-size: 26px;
+  }
+
+  .footer-icons-container img {
+    width: 30px;
+  }
 }

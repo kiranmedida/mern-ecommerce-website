@@ -232,3 +232,12 @@ body{background:var(--page-bg); color:var(--text); font-family: "Helvetica Neue"
   .addtocart-btn{ width: 100%; }
   .productdisplay-right h1{ font-size: 22px; }
 }
+@media (max-width: 600px) {
+  .productdisplay-right-description {
+    font-size: 14px;
+  }
+
+  .productdisplay-right-size {
+    flex-wrap: wrap;
+  }
+}

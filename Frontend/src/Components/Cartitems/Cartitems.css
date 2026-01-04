@@ -4,24 +4,23 @@
   --line: #e6e6e6;
   --accent: #e14b3b;
   --bg: #fff;
-  --radius: 6px;
+  --radius: 8px;
   --gap: 18px;
 }
 
-/* Page container */
+/* ================= PAGE ================= */
 .cartitems{
   max-width: var(--page-max);
   margin: 36px auto;
   padding: 20px;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #222;
-  box-sizing: border-box;
 }
 
-/* Header row (labels) */
+/* ================= DESKTOP HEADER ================= */
 .cartitems-format-main{
   display: grid;
-  grid-template-columns: 110px 1fr 120px 120px 120px 60px; /* wider first column for bigger thumbnails */
+  grid-template-columns: 110px 1fr 120px 120px 120px 60px;
   gap: 12px;
   align-items: center;
   padding: 6px 10px;
@@ -30,48 +29,44 @@
   font-size: 14px;
 }
 
-/* Thin separator line */
+/* ================= DIVIDER ================= */
 .cartitems hr{
   border: none;
   border-top: 1px solid var(--line);
   margin: 12px 0;
 }
 
-/* Each product row */
+/* ================= CART ROW ================= */
 .cartitems-format{
   display: grid;
-  grid-template-columns: 110px 1fr 120px 120px 120px 60px; /* match header */
+  grid-template-columns: 110px 1fr 120px 120px 120px 60px;
   gap: 12px;
   align-items: center;
   padding: 18px 10px;
-  min-height: 96px; /* taller rows */
 }
 
-/* Product thumbnail (LARGER) */
-.cartitems-format img.carticon-product-icon {
-  width: 88px; /* larger */
-  height: 88px;
+/* PRODUCT IMAGE */
+.carticon-product-icon{
+  width: 90px;
+  height: 90px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid #f0f0f0;
-  display: inline-block;
+  border: 1px solid #eee;
 }
 
-/* product title text */
+/* PRODUCT TEXT */
 .cartitems-format p{
   margin: 0;
-  color: #333;
   font-size: 15px;
-  line-height: 1.35;
+  color: #333;
 }
 
-/* Price cell */
+/* PRICE */
 .cartitems-format > p:nth-child(3){
-  color: #333;
   font-weight: 600;
 }
 
-/* Quantity button / box */
+/* QUANTITY */
 .cartitems-quantity{
   width: 56px;
   height: 36px;
@@ -79,133 +74,147 @@
   background: #fff;
   border-radius: 6px;
   font-weight: 700;
-  cursor: default;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Total column styling */
+/* TOTAL */
 .cartitems-format > p:nth-child(5){
   font-weight: 700;
-  text-align: left;
 }
 
-/* Remove icon */
-.cartitems-format img.remove-icon{
+/* REMOVE ICON */
+.remove-icon{
   width: 18px;
   height: 18px;
   cursor: pointer;
   justify-self: center;
 }
 
-/* LOWER AREA: totals + promo area and checkout button aligned under totals */
+/* ================= BOTTOM SECTION ================= */
 .cartitems-bottom-row{
   display: flex;
   gap: 40px;
   margin-top: 32px;
-  align-items: flex-start;
   flex-wrap: wrap;
 }
 
-/* Totals card (left) */
+/* TOTAL CARD */
 .cartitems-total{
-  flex: 1 1 520px; /* grow */
+  flex: 1 1 520px;
   background: var(--bg);
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(34,34,34,0.03);
-  min-width: 320px;
-  box-sizing: border-box;
 }
-/* Ensure proceed button sits under totals — put it inside this container or styled to appear below */
-.cartitems-total .checkout-btn{
+
+.cartitems-total h1{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.cartitems-total-item{
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* CHECKOUT BUTTON */
+.checkout-btn{
   margin-top: 20px;
+  width: 100%;
   background: var(--accent);
   color: #fff;
   border: none;
-  padding: 12px 20px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
   border-radius: 6px;
-  font-weight: 700;
-  cursor:pointer;
-  box-shadow: 0 8px 24px rgba(225,75,59,0.12);
-  width: 220px;
+  cursor: pointer;
 }
 
-/* Totals lines */
-.cartitems-total h1{
-  font-size: 20px;
-  margin: 0 0 8px;
-  font-weight: 700;
-}
-.cartitems-total-item{
-  display:flex;
-  justify-content:space-between;
-  padding: 12px 4px;
-  color: var(--muted);
-  font-size: 15px;
-}
-.cartitems-total-item h3{ margin:0; }
-.cartitems-total-item p{ margin:0; }
-
-/* Promo box (right) */
+/* PROMO */
 .cartitems-promocode{
-  flex: 0 0 420px; /* fixed-right column width */
-  max-width: 420px;
-  margin-left: auto;
+  flex: 0 0 420px;
 }
+
 .cartitems-promocode p{
-  margin: 0 0 10px 0;
   color: var(--muted);
+  margin-bottom: 10px;
 }
+
 .cartitems-promobox{
-  display:flex;
+  display: flex;
   gap: 8px;
-  align-items:center;
 }
+
 .cartitems-promobox input{
   flex: 1;
-  padding: 12px 14px;
+  padding: 12px;
+  border-radius: 4px;
   border: 1px solid var(--line);
-  border-radius: 4px;
-  background: #fafafa;
-}
-.cartitems-promobox button{
-  padding: 12px 18px;
-  border-radius: 4px;
-  border: none;
-  background: #222;
-  color: white;
-  font-weight:700;
-  cursor:pointer;
 }
 
-/* Responsive adjustments */
-@media (max-width: 980px){
-  .cartitems-format-main,
+.cartitems-promobox button{
+  padding: 12px 18px;
+  background: #222;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ===================================================
+   📱 MOBILE VIEW — AMAZON / FLIPKART STYLE
+=================================================== */
+@media (max-width: 768px){
+
+  /* hide table header */
+  .cartitems-format-main{
+    display: none;
+  }
+
+  /* each item becomes a card */
   .cartitems-format{
-    grid-template-columns: 80px 1fr 96px 96px 96px 56px;
-    font-size: 13px;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 14px 0;
   }
-  .cartitems{
-    padding: 12px;
-    margin: 14px auto;
+
+  .carticon-product-icon{
+    width: 90px;
+    height: 90px;
   }
+
+  /* text sizing */
+  .cartitems-format p{
+    font-size: 14px;
+  }
+
+  /* quantity */
+  .cartitems-quantity{
+    width: 44px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  /* remove icon position */
+  .remove-icon{
+    justify-self: flex-start;
+    margin-top: 6px;
+  }
+
+  /* bottom layout stack */
   .cartitems-bottom-row{
     flex-direction: column;
-    gap: 18px;
+    gap: 20px;
   }
+
   .cartitems-promocode{
-    order: 2;
-    width: 100%;
-    margin-left: 0;
-    max-width: none;
-  }
-  .cartitems-total{
-    width: 100%;
-  }
-  .cartitems-total .checkout-btn{
     width: 100%;
   }
 }
